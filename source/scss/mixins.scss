@@ -1,0 +1,169 @@
+@mixin center {
+  margin: {
+    left: auto;
+    right: auto;
+  }
+}
+
+@mixin container($width: 940px, $padding-x:10px) {
+  @include center();
+  padding: {
+    left: $padding-x;
+    right: $padding-x;
+  }
+  width: $width;
+}
+
+@mixin font--first($size: false,  $lh: false, $color: false, $weight: false, $transform: false) {
+  font-family: $font-first__family;
+  @if $size { font-size: $size; }
+  @if $lh { line-height: $lh; }
+  @if $color { color: $color; }
+  @if $weight { font-weight: $weight; }
+  @if $transform { text-transform: $transform; }
+}
+
+@mixin font--second($size: false,  $lh: false, $color: false, $weight: false, $transform: false) {
+  font-family: $font-second__family;
+  @if $size { font-size: $size; }
+  @if $lh { line-height: $lh; }
+  @if $color { color: $color; }
+  @if $weight { font-weight: $weight; }
+  @if $transform { text-transform: $transform; }
+}
+
+@mixin font--icon() {
+  font-family: "symbols-technomart";
+  font-weight: normal;
+  line-height: 1em;
+  text-align: center;
+  text-transform: none;
+  text-decoration: inherit;
+  font-style: normal;
+  font-variant: normal;
+  speak: none;
+}
+
+@mixin hidden-title() {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden;
+}
+
+@mixin img() {
+  max-width: 100%;
+  height: auto;
+  vertical-align: top;
+}
+
+@mixin pseudo($content: '', $display: block, $pos: absolute) {
+  content: $content;
+  display: $display;
+  position: $pos;
+}
+//Треугольник(цвет, направление, размер, закругление 3px)
+@mixin triangle($color, $direction, $size: 6px, $round: false, $position: absolute) {
+  @include pseudo($pos: $position);
+  width: 0;
+  height: 0;
+  @if $round {
+    border-radius: 3px;
+  }
+  @if $direction == bottom {
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-top: $size solid $color;
+    margin-top: 0 - round( $size / 2.5 );
+  } @else if $direction == top {
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-bottom: $size solid $color;
+    margin-bottom: 0 - round( $size / 2.5 );
+  } @else if $direction == right {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-left: $size solid $color;
+    margin-right: -$size;
+  } @else if $direction == left {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-right: $size solid $color;
+    margin-left: -$size;
+  }
+}
+
+/// Creates a menu icon with a set width, height, number of bars, and colors. The mixin uses the height of the icon and the weight of the bars to determine spacing. <div class="docs-example-burger"></div>
+///
+/// @param {Color} $color [$black] - Color to use for the icon.
+/// @param {Color} $color-hover [$dark-gray] - Color to use when the icon is hovered over.
+/// @param {Number} $width [20px] - Width of the icon.
+/// @param {Number} $height [16px] - Height of the icon.
+/// @param {Number} $weight [2px] - Height of individual bars in the icon.
+/// @param {Number} $bars [3] - Number of bars in the icon.
+@mixin hamburger(
+  $color: $black,
+  $color-hover: $dark-gray,
+  $width: 20px,
+  $height: 16px,
+  $weight: 2px,
+  $bars: 3
+) {
+  // box-shadow CSS output
+  $shadow: ();
+  $hover-shadow: ();
+  
+  // Spacing between bars is calculated based on the total height of the icon and the weight of each bar
+  $spacing: ($height - ($weight * $bars)) / ($bars - 1);
+  
+  @if unit($spacing) == 'px' {
+    $spacing: floor($spacing);
+  }
+  
+  @for $i from 2 through $bars {
+    $offset: ($weight + $spacing) * ($i - 1);
+    $shadow: append($shadow, 0 $offset 0 $color, comma);
+  }
+  
+  // Icon container
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: $width;
+  height: $height;
+  cursor: pointer;
+  
+  // Icon bars
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    display: block;
+    width: 100%;
+    height: $weight;
+    
+    background: $color;
+    box-shadow: $shadow;
+    
+    content: '';
+  }
+  
+  // Hover state
+  @if $color-hover {
+    // Generate CSS
+    @for $i from 2 through $bars {
+      $offset: ($weight + $spacing) * ($i - 1);
+      $hover-shadow: append($hover-shadow, 0 $offset 0 $color-hover, comma);
+    }
+    
+    &:hover::after {
+      background: $color-hover;
+      box-shadow: $hover-shadow;
+    }
+  }
+}
