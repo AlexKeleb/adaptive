@@ -21,19 +21,7 @@ gulp.task('sorting', function () {
             sort({
                 "order": [
                     "custom-properties",
-                    "dollar-variables",
-                    "at-rules",
-                    {
-                        "type": "at-rule",
-                        "name": "include"
-                    },
-                    {
-                        "type": "at-rule",
-                        "name": "include",
-                        "parameter": "icon"
-                    },
-                    "declarations",
-                    "rules"
+                    "dollar-variables"
                 ],
                 "properties-order": [
                     {
@@ -324,7 +312,7 @@ gulp.task('style', function () {
     return gulp.src('source/scss/style.scss')
         .pipe(plumber({errorHandler: notify.onError()}))
         .pipe(gulpIf(isDevelopment, sourcemaps.init()))
-        .pipe(scss())
+        .pipe(scss({outputStyle: 'expanded'}))
         .pipe(postcss([
             autoprefixer({
                 browsers: [
