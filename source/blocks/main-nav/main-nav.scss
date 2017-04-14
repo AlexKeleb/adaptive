@@ -1,0 +1,78 @@
+@import "../../scss/variables.scss";
+@import "../../scss/mixins.scss";
+
+.main-nav {
+  position: relative;
+}
+
+.main-nav--mobile {
+  box-sizing: border-box;
+  min-height: 568px;
+  margin-left: 70px;
+
+  background-color: #6a4d38;
+  @include pseudo-before(8px, 100%);
+  &::before {
+    top: 0;
+    left: 0;
+    
+    background: url("../img/pic__main-nav-mobile-shadow.png") top left repeat-y;
+  }
+}
+
+.main-nav__toggle {
+  @include modal-close(70px, 50px, #6a4d38, null, 34px, 2px, #fff);
+  top: 0;
+  left: -70px;
+  
+  font-size: 0;
+  
+  border: none;
+  outline: none;
+}
+
+.main-nav--closed {
+  min-height: 51px;
+  margin-left: 0;
+  li {
+    display: none;
+  }
+  .menu__item--current {
+    display: block;
+  }
+  a {
+    text-align: center;
+  }
+  .main-nav__toggle {
+    &::before {
+      display: none;
+    }
+    &::after {
+      display: none;
+    }
+    left: 250px;
+    span {
+      @include hamburger(#fff, #fff, 35px, 20px, 2px, 3);
+      @include center(absolute, true, true);
+    }
+  }
+}
+
+.main-nav--nojs {
+  box-sizing: border-box;
+  min-height: 568px;
+  margin-left: 70px;
+  .main-nav__toggle {
+    @include modal-close(70px, 50px, #6a4d38, null, 34px, 2px, #fff);
+    left: -70px;
+    span {
+      display: none;
+    }
+  }
+  li {
+    display: block;
+  }
+  a {
+    text-align: left;
+  }
+}

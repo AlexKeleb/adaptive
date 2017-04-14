@@ -1,0 +1,33 @@
+<nav class="main-nav  main-nav--mobile  main-nav--closed  main-nav--nojs">
+    <div class="main-nav__wrapper">
+
+        <button class="main-nav__toggle" type="button"><span>Открыть меню</span></button>
+
+        @@include("../menu/menu--5.html", {
+        "second-class": "menu--nav-mobile",
+        "li1-class": "menu__item--current",
+        "li2-class": "",
+        "li3-class": "",
+        "li4-class": "",
+        "li5-class": "",
+        "a1-attr": "",
+        "a2-attr": "href=\"#\"",
+        "a3-attr": "href=\"#\"",
+        "a4-attr": "href=\"#\"",
+        "a5-attr": "href=\"#\"",
+        "a1-text": "Главная",
+        "a2-text": "Наши работы",
+        "a3-text": "Записаться",
+        "a4-text": "Контакты",
+        "a5-text": "Html Academy"
+        })
+
+        @@include("../menu/menu--1.html", {
+        "second-class": "menu--user-mobile",
+        "li1-class": "",
+        "a1-attr": "href=\"#\"",
+        "a1-text": "Вход"
+        })
+
+    </div>
+</nav>

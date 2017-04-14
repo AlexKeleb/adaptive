@@ -1,31 +1,7 @@
-$font-first__family: "Cuprum", Arial, sans-serif;
-$font-second__family: "PT Sans", Arial, sans-serif;
+$font-family--first: "PT Sans Narrow", Arial, sans-serif;
+$font-family--second: "", Arial, sans-serif;
+$font-family--icon: false;
 
-
-$foundation-palette: (
-        primary: #1779ba,
-        secondary: #767676,
-        success: #3adb76,
-        warning: #ffae00,
-        alert: #cc4b37,
-) !default;
-
-/// Color used for light gray UI items.
-/// @type Color
-$light-gray: #e6e6e6 !default;
-
-/// Color used for medium gray UI items.
-/// @type Color
-$medium-gray: #cacaca !default;
-
-/// Color used for dark gray UI items.
-/// @type Color
-$dark-gray: #8a8a8a !default;
-
-/// Color used for black ui items.
-/// @type Color
-$black: #0a0a0a !default;
-
-/// Color used for white ui items.
-/// @type Color
-$white: #fefefe !default;
+$width--desktop: "(min-width: 1200px)";
+$width--tablet: "(min-width: 768px)";
+$width--mobile-only: "(max-width: 767px)";

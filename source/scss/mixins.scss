@@ -1,39 +1,84 @@
-@mixin center {
+//абсолютный центровщик горизонтальный и вертикальный (позиционирование, вертикально, горизонтально)
+@mixin center($position: absolute, $horizontal: true, $vertical: false) {
+  @if $position {
+    position: $position;
+  }
+  @if $vertical {
+    top: 50%;
+  }
+  @if $horizontal {
+    left: 50%;
+  }
+  @if $vertical and $horizontal {
+    transform: translateX(-50%) translateY(-50%);
+  } @else if $vertical {
+    transform: translateY(-50%);
+  } @else {
+    transform: translateX(-50%);
+  }
+}
+
+//основной контейнер страницы (ширина, внутренние горизонтальные отступы)
+@mixin container($width, $padding-x: false) {
   margin: {
     left: auto;
     right: auto;
   }
-}
-
-@mixin container($width: 940px, $padding-x:10px) {
-  @include center();
-  padding: {
-    left: $padding-x;
-    right: $padding-x;
+  @if ($padding-x) {
+    padding: {
+      left: $padding-x;
+      right: $padding-x;
+    }
   }
   width: $width;
 }
 
+//параметры шрифта первичного (размер шрифта, высота строки, цвет, толщина шрифта, строчные или прописные)
 @mixin font--first($size: false,  $lh: false, $color: false, $weight: false, $transform: false) {
-  font-family: $font-first__family;
-  @if $size { font-size: $size; }
-  @if $lh { line-height: $lh; }
-  @if $color { color: $color; }
-  @if $weight { font-weight: $weight; }
-  @if $transform { text-transform: $transform; }
+  font-family: $font-family--first;
+  @if $size {
+    font-size: $size;
+  }
+  @if $lh {
+    line-height: $lh;
+  }
+  @if $color {
+    color: $color;
+  }
+  @if $weight {
+    font-weight: $weight;
+  }
+  @if $transform {
+    text-transform: $transform;
+  }
 }
 
+//параметры шрифта вторичного (размер шрифта, высота строки, цвет, толщина шрифта, строчные или прописные)
 @mixin font--second($size: false,  $lh: false, $color: false, $weight: false, $transform: false) {
-  font-family: $font-second__family;
-  @if $size { font-size: $size; }
-  @if $lh { line-height: $lh; }
-  @if $color { color: $color; }
-  @if $weight { font-weight: $weight; }
-  @if $transform { text-transform: $transform; }
+  font-family: $font-family--second;
+  @if $size {
+    font-size: $size;
+  }
+  @if $lh {
+    line-height: $lh;
+  }
+  @if $color {
+    color: $color;
+  }
+  @if $weight {
+    font-weight: $weight;
+  }
+  @if $transform {
+    text-transform: $transform;
+  }
 }
 
-@mixin font--icon() {
-  font-family: "symbols-technomart";
+//иконочный шрифт (код символа)
+@mixin font--icon($content: false) {
+  @if ($content) {
+    content: '#{$content}';
+  }
+  font-family: $font-family--icon;
   font-weight: normal;
   line-height: 1em;
   text-align: center;
@@ -42,37 +87,85 @@
   font-style: normal;
   font-variant: normal;
   speak: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@mixin hidden-title() {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
-  clip: rect(0, 0, 0, 0);
-  overflow: hidden;
-}
-
-@mixin img() {
+//ограничитель размера изображения
+@mixin img-size() {
   max-width: 100%;
   height: auto;
-  vertical-align: top;
 }
 
+//фон и размер retina изображений
+@mixin img-retina($file-1x, $file-2x, $width-1x, $height-1x) {
+  background-image: url($file-1x);
+  @media only screen and (min-resolution: 192dpi), // IE9-11 don't support dppx
+  only screen and (min-resolution: 2dppx) { // Standardized
+    background-image: url($file-2x);
+    background-size: $width-1x $height-1x;
+  }
+}
+
+//основные параметры псевдо элементов (контент, дисплэй, позиционирование)
 @mixin pseudo($content: '', $display: block, $pos: absolute) {
   content: $content;
   display: $display;
   position: $pos;
 }
-//Треугольник(цвет, направление, размер, закругление 3px)
+
+//псевдо блок ::before (ширина, высота, контент, дисплэй, позиционирование)
+@mixin pseudo-before($width, $height, $content: '', $display: block, $pos: absolute) {
+  &::before {
+    width: $width;
+    height: $height;
+    content: $content;
+    display: $display;
+    position: $pos;
+  }
+}
+
+//псевдо блок ::after (ширина, высота, контент, дисплэй, позиционирование)
+@mixin pseudo-after($width, $height, $content: '', $display: block, $pos: absolute) {
+  &::after {
+    width: $width;
+    height: $height;
+    content: $content;
+    display: $display;
+    position: $pos;
+  }
+}
+
+//крестик для закрытия попапов (ширина блока, высота блока, фон блока, форма блока, длинна палочек, толщина палочек, цвет палочек)
+@mixin modal-close($Bwidth: 40px, $Bheight: 40px, $bg: transparent, $radius: false, $Xwidth: 26px, $Xheight: 6px, $Xcolor: red) {
+  position: absolute;
+  width: $Bwidth;
+  height: $Bheight;
+  border-radius: $radius;
+  background: $bg;
+  cursor: pointer;
+  @include pseudo-before($Xwidth, $Xheight);
+  @include pseudo-after($Xwidth, $Xheight);
+  &::before,
+  &::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: $Xcolor;
+    transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  }
+  &::after {
+    transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+  }
+}
+
+//Треугольник (цвет, направление, размер, закругление краев, позиционирование)
 @mixin triangle($color, $direction, $size: 6px, $round: false, $position: absolute) {
   @include pseudo($pos: $position);
   width: 0;
   height: 0;
   @if $round {
-    border-radius: 3px;
+    border-radius: $round;
   }
   @if $direction == bottom {
     border-left: $size solid transparent;
@@ -97,17 +190,10 @@
   }
 }
 
-/// Creates a menu icon with a set width, height, number of bars, and colors. The mixin uses the height of the icon and the weight of the bars to determine spacing. <div class="docs-example-burger"></div>
-///
-/// @param {Color} $color [$black] - Color to use for the icon.
-/// @param {Color} $color-hover [$dark-gray] - Color to use when the icon is hovered over.
-/// @param {Number} $width [20px] - Width of the icon.
-/// @param {Number} $height [16px] - Height of the icon.
-/// @param {Number} $weight [2px] - Height of individual bars in the icon.
-/// @param {Number} $bars [3] - Number of bars in the icon.
+//Значек раскрывающегося меню (цвет полос, цвет полос при наведении, ширина значка, высота значка, толщина полос, количество полос )
 @mixin hamburger(
-  $color: $black,
-  $color-hover: $dark-gray,
+  $color: black,
+  $color-hover: red,
   $width: 20px,
   $height: 16px,
   $weight: 2px,
@@ -166,4 +252,58 @@
       box-shadow: $hover-shadow;
     }
   }
+}
+
+//градиент двухцветный горизонтальный (цвет начала, цвет конца, позиция начала, позиция конца)
+@mixin gradient-x($start-color: #555, $end-color: #333, $start-percent: 0%, $end-percent: 100%) {
+  background-image: linear-gradient(to right, $start-color $start-percent, $end-color $end-percent);
+  background-repeat: repeat-x;
+}
+
+//градиент двухцветный вертикальный (цвет начала, цвет конца, позиция начала, позиция конца)
+@mixin gradient-y($start-color: #555, $end-color: #333, $start-percent: 0%, $end-percent: 100%) {
+  background-image: linear-gradient(to bottom, $start-color $start-percent, $end-color $end-percent);
+  background-repeat: repeat-x;
+}
+
+@mixin gradient-directional($start-color: #555, $end-color: #333, $deg: 45deg) {
+  background-image: linear-gradient($deg, $start-color, $end-color);
+  background-repeat: repeat-x;
+}
+
+@mixin gradient-x-three-colors($start-color: #00b3ee, $mid-color: #7a43b6, $color-stop: 50%, $end-color: #c3325f) {
+  background-image: linear-gradient(to right, $start-color, $mid-color $color-stop, $end-color);
+  background-repeat: no-repeat;
+}
+
+@mixin gradient-y-three-colors($start-color: #00b3ee, $mid-color: #7a43b6, $color-stop: 50%, $end-color: #c3325f) {
+  background-image: linear-gradient($start-color, $mid-color $color-stop, $end-color);
+  background-repeat: no-repeat;
+}
+
+@mixin gradient-radial($inner-color: #555, $outer-color: #333) {
+  background-image: radial-gradient(circle, $inner-color, $outer-color);
+  background-repeat: no-repeat;
+}
+
+@mixin gradient-striped($color: rgba(255,255,255,.15), $angle: 45deg) {
+  background-image: linear-gradient($angle, $color 25%, transparent 25%, transparent 50%, $color 50%, $color 75%, transparent 75%, transparent);
+}
+
+@mixin reset-text {
+  font-family: $font-family-base;
+  // We deliberately do NOT reset font-size or word-wrap.
+  font-style: normal;
+  font-weight: $font-weight-normal;
+  line-height: $line-height-base;
+  text-align: left; // Fallback for where `start` is not supported
+  text-align: start;
+  text-decoration: none;
+  text-shadow: none;
+  text-transform: none;
+  letter-spacing: normal;
+  word-break: normal;
+  word-spacing: normal;
+  white-space: normal;
+  line-break: auto;
 }

@@ -1,0 +1,169 @@
+@import "../../scss/variables";
+@import "../../scss/mixins";
+
+@mixin a__font {
+  @include font--first(18px, 24px, #fff, 700, uppercase); /*параметры шрифта для ссылок*/
+}
+
+$a__color--hover: false; /*                цвет шрифта при наведении на ссылку*/
+$a__color--active: false; /*              цвет шрифта при клике по ссылке*/
+
+$a__bg: #826550; /*                         цвет фона ссылки*/
+$a__bg--hover: false; /*               цвет фона ссылки при наведении*/
+$a__bg--active: false; /*              цвет фона ссылки при клике*/
+
+$a__padding: 13px 22px; /*                   внутренние отступы для всех ссылок*/
+$a__padding--first: false; /*            внутренние отступы для первой ссылки*/
+$a__padding--last: false; /*             внутренние отступы для последней ссылки*/
+
+$a--current: false; /*                    включение стилизации ссылки для текущей страницы*/
+$a__bg--current: false; /*                цвет фона ссылки для текущей страницы*/
+$a__color--current: false; /*             цвет шрифта ссылки для текущей страницы*/
+$li__box-shadow: false; /*         тень пункта меню  для текущей страницы*/
+
+$li__margin: false; /*                    внешние отступы пунктов меню*/
+$li__padding: false; /*                 внутреннние отступы пунктов меню*/
+
+$list__fg: false; /*                         включение горизонтального резинового меню*/
+$item__fg: false; /*                         включение горизонтального резиновых пунктов меню*/
+
+/* шаблон вставки в html
+@@include("../menu/menu--7.html", {
+"second-class": "menu--",
+"li1-class": "menu__item--current",
+"li2-class": "",
+"li3-class": "",
+"li4-class": "",
+"li5-class": "",
+"li6-class": "",
+"li7-class": "",
+"li8-class": "",
+"a1-attr": "href=\"#\"",
+"a2-attr": "href=\"#\"",
+"a3-attr": "href=\"#\"",
+"a4-attr": "href=\"#\"",
+"a5-attr": "href=\"#\"",
+"a6-attr": "href=\"#\"",
+"a7-attr": "href=\"#\"",
+"a8-attr": "href=\"#\"",
+"a1-text": "",
+"a2-text": "",
+"a3-text": "",
+"a4-text": "",
+"a5-text": "",
+"a6-text": "",
+"a7-text": "",
+"a8-text": ""
+})
+*/
+
+.menu {
+  margin: 0;
+  padding: 0;
+  
+  list-style: none;
+  a {
+    @include a__font();
+    display: block;
+    
+    text-decoration: none;
+    
+    background: $a__bg;
+    @if ($a__padding) {
+      padding: $a__padding;
+    }
+    &:hover {
+      color: $a__color--hover;
+      
+      background: $a__bg--hover;
+    }
+    &:active {
+      color: $a__color--active;
+      
+      background: $a__bg--active;
+    }
+  }
+  @at-root .menu__item {
+    display: block;
+    @if ($li__margin) {
+      margin: $li__margin;
+    }
+    @if ($li__padding) {
+      padding: $li__padding;
+    }
+    
+    @if ($a__padding--first) {
+      &:first-child {
+        a {
+          padding-left: $a__padding--first;
+        }
+      }
+    }
+    @if ($a__padding--last) {
+      &:last-child {
+        a {
+          padding-right: $a__padding--last;
+        }
+      }
+    }
+    @if ($a--current) {
+      &--current {
+        cursor: default;
+        @if ($li__box-shadow) {
+          box-shadow: $li__box-shadow;
+        }
+        a {
+          @if ($a__color--current) {
+            color: $a__color--current;
+          }
+          background: $a__bg--current;
+          &:hover {
+            @if ($a__color--current) {
+              color: $a__color--current;
+            }
+            background: $a__bg--current;
+          }
+          &:active {
+            @if ($a__color--current) {
+              color: $a__color--current;
+            }
+            background: $a__bg--current;
+          }
+        }
+      }
+    }
+  }
+}
+
+.menu--horizontal {
+  display: flex;
+  flex-wrap: wrap;
+  @if ($list__fg) {
+    flex-grow: $list__fg;
+  }
+  .menu__item {
+    display: flex;
+    justify-content: center;
+    @if ($item__fg) {
+      flex-grow: $item__fg;
+    }
+  }
+}
+
+.menu--nav-mobile {
+  a {
+    border-bottom: 1px solid #71543f;
+    box-shadow: inset 0 1px 0 #886e5b;
+  }
+}
+
+.menu--user-mobile {
+  a {
+    padding-left: 49px;
+    
+    font-weight: 400;
+    text-transform: none;
+    
+    border-color: transparent;
+  }
+}

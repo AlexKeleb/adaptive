@@ -1,0 +1,85 @@
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+$btn__bg: red;
+$btn__bg--hover: blue;
+$btn__bg--active: #ddd;
+
+$btn__color: #fff;
+$btn__color--hover: #fff;
+$btn__color--active: #fff;
+
+$btn__border: none;
+$btn__border--hover: none;
+$btn__border--active: none;
+
+$btn__radius: 4px;
+$btn_shadow: inset 0 -3px #367315;
+
+$btn__padding: 10px 20px;
+
+.btn {
+  @include font--first(15, 1.33, $btn__color, 400, uppercase);
+  position: relative;
+  
+  display: inline-block;
+  
+  box-sizing: border-box;
+  
+  padding: $btn__padding;
+  
+  text-align: center;
+  text-decoration: none;
+
+  background: $btn__bg;
+  border: none;
+  border-radius: $btn__radius;
+  outline: $btn__border;
+  box-shadow: $btn_shadow;
+  cursor: pointer;
+  &:hover {
+    @if ($btn__color--hover) {
+      color: $btn__color--hover;
+    }
+    @if ($btn__bg--hover) {
+      background: $btn__bg--hover;
+    }
+    @if ($btn__border--hover) {
+      border: $btn__border--hover;
+    }
+  }
+  &:active {
+    @if ($btn__color--active) {
+      color: $btn__color--active;
+    }
+    @if ($btn__bg--active) {
+      background: $btn__bg--active;
+    }
+    @if ($btn__border--active) {
+      border: $btn__border--active;
+    }
+  }
+}
+
+.btn--pseudo-left {
+  padding-left: 32px;
+}
+
+.btn--pseudo-right {
+  padding-right: 54px;
+}
+
+.btn--triangle {
+  &::after {
+    @include pseudo();
+    @include triangle(#ee3643, right, 19px);
+    top: 0;
+    right: 2px;
+  }
+}
+
+.btn--max-width {
+  display: block;
+  
+  width: 100%;
+}

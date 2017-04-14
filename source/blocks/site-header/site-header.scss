@@ -1,0 +1,26 @@
+@import "../../scss/variables.scss";   
+@import "../../scss/mixins.scss";  
+/* шаблон вставки в html 
+
+*/   
+
+.site-header {
+  
+}
+
+.site-header__wrapper{
+  @include container(320px);
+}
+
+.site-header__logo{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+  min-height: 85px;
+
+  background: #242424;
+  img{
+    @include img-size();
+  }
+}
