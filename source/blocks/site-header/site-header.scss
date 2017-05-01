@@ -1,26 +1,56 @@
-@import "../../scss/variables.scss";   
-@import "../../scss/mixins.scss";  
-/* шаблон вставки в html 
+@import "../../scss/variables.scss";
+@import "../../scss/mixins.scss";
 
-*/   
-
-.site-header {
-  
+.site-header__wrapper {
+  @include container($mobile__container-width);
+  position: relative;
+  z-index: 5;
+  background: $black-light--1;
 }
 
-.site-header__wrapper{
-  @include container(320px);
-}
-
-.site-header__logo{
+.site-header__logo {
   display: flex;
   justify-content: center;
   align-content: center;
-
-  min-height: 85px;
-
-  background: #242424;
-  img{
+  height: 85px;
+  img {
     @include img-size();
+    width: 226px;
+    margin-top: 29px;
+  }
+}
+
+@media ($tablet__width-mq) {
+  .site-header__wrapper {
+    @include container($tablet__container-width);
+    display: flex;
+    flex-direction: column;
+    background: $black-light--1 url("../img/bg__header--tablet.jpg") center no-repeat;
+    background-size: cover;
+  }
+  
+  .site-header__logo {
+    position: relative;
+    order: 2;
+    height: 395px;
+    background-size: cover;
+    img {
+      width: 370px;
+      margin-top: 38px;
+    }
+  }
+}
+
+@media ($desktop__width-mq) {
+  .site-header__wrapper {
+    @include container($desktop__container-width);
+    background-image: url("../img/bg__header--desktop.jpg");
+  }
+  
+  .site-header__logo {
+    height: 646px;
+    img {
+      margin-top: 54px;
+    }
   }
 }

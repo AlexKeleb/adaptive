@@ -1,0 +1,234 @@
+@import "../../scss/variables.scss";
+@import "../../scss/mixins.scss";
+
+.stats {
+  @include font--first(20px, 27px, $black);
+}
+
+.stats__wrapper {
+  @include container($mobile__container-width);
+  box-sizing: border-box;
+}
+
+.stats__header {
+  padding: 28px 39px 25px;
+  text-align: center;
+  border: 1px solid $gray-light--3;
+}
+
+.stats__caption {
+  font-size: 30px;
+  line-height: 24px;
+  text-transform: uppercase;
+}
+
+.stats__intro {
+  margin: 0;
+  padding: 13px 0 0;
+}
+
+.stats__comment {
+  display: block;
+  font-size: 20px;
+  line-height: 27px;
+}
+
+.stats__comment--bottom {
+  padding: 15px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.3);
+  background: $black-light--1;
+}
+
+.stats__comment--top {
+  display: none;
+}
+
+.stats__list {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.stats__list {
+  box-sizing: border-box;
+  color: $white;
+  background: $black-light--5;
+  tr {
+    &:nth-child(2) {
+      background: $black-light--7;
+    }
+    &:nth-child(3) {
+      background: $black-light--3;
+    }
+  }
+}
+
+.stats__item {
+  box-sizing: border-box;
+  width: 50%;
+  padding: 21px;
+}
+
+.stats__item--likes {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.stats__item--value {
+  padding-right: 0;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 18px;
+  sup {
+    font-weight: 400;
+    font-size: 25px;
+  }
+}
+
+.stats__item--field {;
+  font-size: 18px;
+  line-height: 18px;
+  text-align: right;
+  color: $gray-light--2;
+  text-transform: lowercase;
+}
+
+@media ($tablet__width-mq) {
+  .stats__wrapper {
+    @include container($tablet__container-width, $tablet__container-padding);
+    background: $black-light--3;
+  }
+  
+  .stats__header {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    min-height: 184px;
+    margin-top: -184px;
+    background: $white;
+    &::before {
+      @include pseudo();
+      @include triangle($white, bottom, 23px);
+      top: 50px;
+      left: -23px;
+    }
+  }
+  
+  .stats__caption {
+    box-sizing: border-box;
+    width: 50%;
+    font-size: 40px;
+    line-height: 40px;
+    text-align: left;
+    text-transform: none;
+  }
+  
+  .stats__intro {
+    box-sizing: border-box;
+    width: 50%;
+    padding: 6px 33px;
+    text-align: left;
+  }
+  
+  .stats__comment--top {
+    display: block;
+    width: 60%;
+    padding: 2px;
+    text-align: left;
+    color: $black;
+    background-color: transparent;
+    opacity: 0.3;
+  }
+  
+  .stats__comment--bottom {
+    display: none;
+  }
+  
+  .stats__list {
+    tbody {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    tr {
+      box-sizing: border-box;
+      width: 50%;
+      padding: 25px 31px;
+    }
+  }
+  
+  .stats__item {
+    display: block;
+    width: 100%;
+    padding: 0;
+  }
+  
+  .stats__item--value {
+    padding-bottom: 12px;
+    font-size: 72px;
+    line-height: 72px;
+    sup {
+      font-size: 45px;
+    }
+  }
+  
+  .stats__item--field {
+    padding-bottom: 7px;
+    text-align: left;
+    br {
+      display: none;
+    }
+  }
+}
+
+@media ($desktop__width-mq) {
+  .stats {
+    @include container($desktop__container-width, $desktop__container-padding);
+    background: $black-light--3;
+  }
+  
+  .stats__wrapper {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    width: auto;
+    margin: -159px 0 0;
+    padding: 0;
+    background: none;
+  }
+  
+  .stats__header {
+    flex-direction: column;
+    width: 320px;
+    margin-top: 0;
+    &::before {
+      top: 45px;
+    }
+  }
+  
+  .stats__caption {
+    width: auto;
+    padding-bottom: 38px;
+  }
+  
+  .stats__intro {
+    width: auto;
+    padding-bottom: 27px;
+    padding-left: 3px;
+  }
+  
+  .stats__comment--top {
+    width: auto;
+    padding-left: 0;
+  }
+  
+  .stats__list {
+    width: 640px;
+  }
+  
+  .stats__item--field {
+    padding-left: 3px;
+    font-size: 20px;
+  }
+}

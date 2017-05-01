@@ -1,8 +1,23 @@
 @import "normalize";
+@import "fonts";
 @import "variables";
 @import "mixins";
+@import "sprite";
+@import "../blocks/btn/btn";
+@import "../blocks/menu/menu";
 @import "../blocks/site-header/site-header.scss";
 @import "../blocks/main-nav/main-nav.scss";
-@import "../blocks/menu/menu";
 @import "../blocks/invisible-text/invisible-text.scss";
-
+@import "../blocks/stats/stats.scss";
+@import "../blocks/features/features.scss";
+@import "../blocks/news/news.scss";
+@import "../blocks/slider/slider.scss";
+@import "../blocks/reviews/reviews.scss";
+@import "../blocks/site-footer/site-footer.scss";
+@import "../blocks/social/social";
+@import "../blocks/appointment/appointment";
+@import "../blocks/form/form.scss";
+@import "../blocks/selector-checkbox/selector-checkbox";
+@import "../blocks/selector-radio/selector-radio";
+@import "../blocks/comments/comments";
+@import "../blocks/price/price.scss";

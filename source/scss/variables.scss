@@ -1,7 +1,36 @@
 $font-family--first: "PT Sans Narrow", Arial, sans-serif;
-$font-family--second: "", Arial, sans-serif;
+$font-family--second: "Myriad Pro", Arial, sans-serif;
 $font-family--icon: false;
 
-$width--desktop: "(min-width: 1200px)";
-$width--tablet: "(min-width: 768px)";
-$width--mobile-only: "(max-width: 767px)";
+$desktop__width-mq: "min-width: 1200px";
+$desktop__container-width: 1200px;
+$desktop__container-padding: 120px;
+
+$tablet__width-mq: "min-width: 768px";
+$tablet__container-width: 768px;
+$tablet__container-padding: 64px;
+
+$mobile__width-mq: "max-width: 767px";
+$mobile__container-width: 320px;
+$mobile__container-padding: false;
+
+$white:          #ffffff;
+$black:          #000000;
+$black-light--1: #242424;
+$black-light--2: #292929;
+$black-light--3: #353535;
+$black-light--4: #3f3f3f;
+$black-light--5: #404040;
+$black-light--6: #4a4a4a;
+$black-light--7: #4e4e4e;
+
+$gray-dark--1:   #d5c9bd;
+$gray:           #e5ddd5;
+$gray-light--1:  #f8f5f2;
+$gray-light--2:  #f7f4f1;
+$gray-light--3:  #f2f2f2;
+
+$brown-dark--2:  #71543f;
+$brown-dark--1:  #6a4d38;
+$brown:          #826550;
+$brown-light--1: #886e5b;

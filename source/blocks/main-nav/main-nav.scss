@@ -3,76 +3,102 @@
 
 .main-nav {
   position: relative;
-}
-
-.main-nav--mobile {
   box-sizing: border-box;
   min-height: 568px;
   margin-left: 70px;
-
-  background-color: #6a4d38;
+  background-color: $brown-dark--1;
   @include pseudo-before(8px, 100%);
   &::before {
     top: 0;
     left: 0;
-    
     background: url("../img/pic__main-nav-mobile-shadow.png") top left repeat-y;
   }
 }
 
 .main-nav__toggle {
-  @include modal-close(70px, 50px, #6a4d38, null, 34px, 2px, #fff);
+  @include modal-close(70px, 50px, $brown-dark--1, null, 34px, 2px, $white);
   top: 0;
   left: -70px;
-  
   font-size: 0;
-  
   border: none;
   outline: none;
 }
 
-.main-nav--closed {
-  min-height: 51px;
-  margin-left: 0;
-  li {
-    display: none;
-  }
-  .menu__item--current {
-    display: block;
-  }
-  a {
-    text-align: center;
-  }
-  .main-nav__toggle {
+@media ($mobile__width-mq) {
+  .main-nav--closed {
+    min-height: 1px;
+    margin-left: 0;
     &::before {
       display: none;
     }
-    &::after {
+    .menu__item {
       display: none;
     }
-    left: 250px;
-    span {
-      @include hamburger(#fff, #fff, 35px, 20px, 2px, 3);
-      @include center(absolute, true, true);
+    .menu__item--current {
+      display: block;
+    }
+    a {
+      text-align: center;
+      border: none;
+      box-shadow: none;
+    }
+    .main-nav__toggle {
+      &::before {
+        display: none;
+      }
+      &::after {
+        display: none;
+      }
+      left: 250px;
+      span {
+        @include hamburger($white, $white, 35px, 20px, 2px, 3);
+        @include center(absolute, true, true);
+      }
+    }
+  }
+  .main-nav--nojs {
+    box-sizing: border-box;
+    min-height: 568px;
+    margin-left: 70px;
+    .main-nav__toggle {
+      @include modal-close(70px, 50px, $brown-dark--1, null, 34px, 2px, #fff);
+      left: -70px;
+      span {
+        display: none;
+      }
+    }
+    li {
+      display: block;
+    }
+    a {
+      text-align: left;
     }
   }
 }
 
-.main-nav--nojs {
-  box-sizing: border-box;
-  min-height: 568px;
-  margin-left: 70px;
-  .main-nav__toggle {
-    @include modal-close(70px, 50px, #6a4d38, null, 34px, 2px, #fff);
-    left: -70px;
-    span {
+@media ($tablet__width-mq) {
+  .main-nav {
+    min-height: 0;
+    margin-left: 0;
+    background: $black;
+    &::before {
       display: none;
     }
   }
-  li {
-    display: block;
+  
+  .main-nav__wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 $tablet__container-padding;
   }
-  a {
-    text-align: left;
+  
+  .main-nav__toggle {
+    display: none;
+  }
+}
+
+@media ($desktop__width-mq) {
+  .main-nav__wrapper {
+    padding: 0 $desktop__container-padding+30px;
   }
 }

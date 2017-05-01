@@ -1,17 +1,17 @@
 @font-face {
-  font-family: "PT Sans";
+  font-family: "PT Sans Narrow";
   font-style: normal;
   font-weight: 400;
-  src: local("PTSans Regular"), local("PTSans-Regular"),
-  url("../fonts/ptsans.woff2") format("woff2"),
-  url("../fonts/ptsans.woff") format("woff");
+  src: local("PT Sans Narrow"), local("PTSans-Narrow"),
+  url("../fonts/ptsansnarrowregular.woff2") format("woff2"),
+  url("../fonts/ptsansnarrowregular.woff") format("woff");
 }
 
 @font-face {
-  font-family: "PT Sans";
+  font-family: "PT Sans Narrow";
   font-style: normal;
   font-weight: 700;
-  src: local("PTSans Bold"), local("PTSans-Bold"),
-  url("../fonts/ptsansbold.woff2") format("woff2"),
-  url("../fonts/ptsansbold.woff") format("woff");
+  src: local("PT Sans Narrow Bold"), local("PTSans-NarrowBold"),
+  url("../fonts/ptsansnarrowbold.woff2") format("woff2"),
+  url("../fonts/ptsansnarrowbold.woff") format("woff");
 }

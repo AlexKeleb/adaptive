@@ -1,0 +1,54 @@
+<form class="form  @@second-class">
+
+    <fieldset class="form__group">
+        <div class="form__group-name">
+            <input class="form__input  form__last-name" type="text" name="last-name" placeholder="Фамилия">
+            <input class="form__input  form__first-name" type="text" name="first-name" placeholder="Имя">
+            <input class="form__input  form__patronymic" type="text" name="patronymic" placeholder="Отчество">
+        </div>
+    </fieldset>
+
+    <fieldset class="form__group">
+        <div class="form__group-contact">
+            <input class="form__input" type="text" name="phone" placeholder="Контактный телефон">
+            <input class="form__input" type="text" name="e-mail" placeholder="Контактный e-mail">
+        </div>
+    </fieldset>
+
+    <textarea class="form__input  form__more-info" name="more-info" rows="3" placeholder="Доп. информация для мастера"></textarea>
+
+    @@include("../selector-radio/selector-radio--5.html", {
+    "second-class": "form__selector",
+    "legend": "Выберите модель бороды:",
+    "label1": "Адмирал",
+    "label2": "Лесоруб",
+    "label3": "Полярник",
+    "label4": "Боярин",
+    "label5": "Мудрец",
+    "attr1": "checked",
+    "attr2": "",
+    "attr3": "",
+    "attr4": "",
+    "attr5": ""
+    })
+
+    @@include("../selector-checkbox/selector-checkbox--6.html", {
+    "second-class": "form__selector",
+    "legend": "Дополнительные услуги:",
+    "label1": "Подкрасить бороду",
+    "label2": "Накрутить усы",
+    "label3": "Причесать бороду",
+    "label4": "Подровнять виски",
+    "label5": "Убрать седину",
+    "label6": "Отполировать лысину",
+    "attr1": "checked",
+    "attr2": "checked",
+    "attr3": "",
+    "attr4": "",
+    "attr5": "",
+    "attr6": ""
+    })
+
+    <button class="form__submit  btn  btn--max-width  btn--color  btn--form">Отправить заявку</button>
+
+</form>

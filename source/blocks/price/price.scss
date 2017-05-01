@@ -1,0 +1,70 @@
+@import "../../scss/variables.scss";
+@import "../../scss/mixins.scss";
+
+.price {
+  @include font--first(20px, 27px, $white);
+  @include triangle-container($black-light--3, bottom, 160px, 34px);
+  padding: 70px 19px 18px;
+  background: $black-light--3;
+}
+
+.price__title {
+  margin: 0;
+  padding: 0 0 22px;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 30px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.price__table {
+  padding-bottom: 14px;
+  border-collapse: collapse;
+}
+
+.price__service {
+  font-weight: 700;
+}
+
+.price__advance {
+  line-height: 23px;
+  text-transform: lowercase;
+}
+
+.price__discount {
+  margin: 0;
+  padding: 18px 18px 18px 113px;
+  background: url("../../img/pic__clock.svg") 22px 15px no-repeat;
+  background-size: 58px 57px;
+  border: 1px solid $black-light--5;
+}
+
+@media ($mobile__width-mq) {
+  .price__table {
+    display: block;
+    border: none;
+    tr {
+      display: flex;
+      flex-wrap: wrap;
+      padding-bottom: 15px;
+    }
+  }
+  
+  .price__number {
+    display: none;
+  }
+  
+  .price__service {
+    min-width: 60%;
+  }
+  
+  .price__advance {
+    order: 3;
+  }
+  
+  .price__cost {
+    flex-grow: 1;
+    text-align: right;
+  }
+}

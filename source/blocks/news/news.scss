@@ -1,0 +1,136 @@
+@import "../../scss/variables.scss";
+@import "../../scss/mixins.scss";
+
+.news {
+  @include font--first(18px, 27px, $black);
+}
+
+.news__wrapper {
+  @include container($mobile__container-width);
+  box-sizing: border-box;
+  padding: 68px 19px 28px 20px;
+  background: $gray-light--1;
+  border-bottom: 1px solid $gray;
+}
+
+.news__title {
+  margin: 0;
+  padding: 0 0 11px;
+  font-size: 30px;
+  line-height: 30px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.news__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.news__item {
+  position: relative;
+  padding: 17px 0 17px 70px;
+  border-bottom: 1px solid $gray;
+  &:nth-child(2) {
+    border-bottom: none;
+  }
+  &:nth-child(n+3) {
+    display: none;
+  }
+  p {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.news__date {
+  position: absolute;
+  top: 28px;
+  left: 0;
+  box-sizing: border-box;
+  width: 50px;
+  height: 50px;
+  padding-top: 5px;
+  font-size: 16px;
+  line-height: 10px;
+  text-align: center;
+  color: $white;
+  background: $black;
+  &::after {
+    @include triangle($black, bottom, 10px);
+    bottom: -10px;
+    left: 0;
+    border-right-width: 25px;
+    border-left-width: 25px;
+  }
+  b {
+    display: block;
+    font-size: 30px;
+    line-height: 30px;
+  }
+}
+
+.news__all {
+  margin-top: 6px;
+}
+
+@media ($tablet__width-mq) {
+  .news__wrapper {
+    @include container($tablet__container-width, $tablet__container-padding);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    padding-top: 83px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid $gray;
+  }
+  
+  .news__title {
+    flex-grow: 1;
+    padding-top: 10px;
+    font-size: 40px;
+    text-align: left;
+  }
+  
+  .news__list {
+    display: flex;
+    flex-wrap: wrap;
+    order: 3;
+    padding-top: 30px;
+  }
+  
+  .news__item {
+    box-sizing: border-box;
+    width: 50%;
+    padding-right: 30px;
+    border-bottom: none;
+    span {
+      display: none;
+    }
+  }
+  
+  .news__all {
+    margin-top: 0;
+  }
+}
+
+@media ($desktop__width-mq) {
+  .news__wrapper {
+    @include container($desktop__container-width, $desktop__container-padding);
+    padding-top: 118px;
+    padding-bottom: 22px;
+  }
+  
+  .news__title {
+    padding-bottom: 10px;
+    padding-left: 70px;
+  }
+  
+  .news__item {
+    width: 320px;
+    &:nth-child(n+3) {
+      display: block;
+    }
+  }
+}

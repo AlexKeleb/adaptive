@@ -1,0 +1,149 @@
+@import "../../scss/variables.scss";
+@import "../../scss/mixins.scss";
+
+.reviews__wrapper {
+  @include container($mobile__container-width);
+  @include font--first(18px, 27px, $black);
+  box-sizing: border-box;
+  padding: 26px 20px 55px;
+  background: $gray-light--1;
+  &::after {
+    border-top-color: $gray-light--1;
+  }
+}
+
+.reviews__title {
+  margin: 0;
+  padding: 0 0 29px;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 30px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.reviews__write {
+  display: none;
+}
+
+.reviews__item {
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 70px;
+  cite {
+    font-weight: 700;
+    font-size: 24px;
+    font-style: normal;
+  }
+  p {
+    margin: 0;
+    padding: 7px 0 0;
+  }
+}
+
+.reviews__author-photo {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 48px;
+  height: 47px;
+  border: 1px solid $gray;
+  img {
+    @include img-size();
+  }
+}
+
+.reviews__selectors {
+  bottom: 19px;
+  padding: 0 27px;
+  background: $gray-light--1;
+  input:checked + label {
+    background-color: $black-light--3;
+  }
+}
+
+.reviews__toggle {
+  border: 1px solid $black-light--3;
+}
+
+@media ($tablet__width-mq) {
+  .reviews__wrapper {
+    @include container($tablet__container-width, $tablet__container-padding);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    padding-top: 37px;
+    padding-bottom: 71px;
+  }
+  
+  .reviews__title {
+    flex-grow: 1;
+    padding-top: 9px;
+    padding-bottom: 48px;
+    font-size: 40px;
+    text-align: left;
+  }
+  
+  .reviews__write {
+    display: inline-block;
+  }
+  
+  .reviews__item {
+    padding: 28px 20px 36px 141px;
+    border-top: 1px solid $gray;
+    border-bottom: 1px solid $gray;
+    p {
+      padding-top: 10px;
+    }
+  }
+  
+  .reviews__author-photo {
+    top: 38px;
+    left: 31px;
+    width: 80px;
+    height: 80px;
+    border: none;
+    img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+    }
+  }
+  
+  .reviews__selectors {
+    bottom: 68px;
+  }
+}
+
+@media ($desktop__width-mq) {
+  .reviews__wrapper {
+    @include container($desktop__container-width, $desktop__container-padding);
+    padding-bottom: 98px;
+  }
+  
+  .reviews__title {
+    padding-left: 70px;
+  }
+  
+  .reviews__item {
+    padding-right: 70px;
+    padding-left: 340px;
+  }
+  
+  .reviews__author-photo {
+    top: 0;
+    left: 20px;
+    width: 249px;
+    height: 159px;
+    overflow: hidden;
+    img {
+      width: 249px;
+      height: auto;
+      border-radius: 0;
+    }
+  }
+  
+  .reviews__selectors {
+    bottom: 47px;
+  }
+}

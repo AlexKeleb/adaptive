@@ -2,30 +2,20 @@
 @import "../../scss/mixins";
 
 @mixin a__font {
-  @include font--first(18px, 24px, #fff, 700, uppercase); /*параметры шрифта для ссылок*/
+  @include font--first(18px, 24px, $white, 700, uppercase); /*параметры шрифта для ссылок*/
 }
 
 $a__color--hover: false; /*                цвет шрифта при наведении на ссылку*/
 $a__color--active: false; /*              цвет шрифта при клике по ссылке*/
 
-$a__bg: #826550; /*                         цвет фона ссылки*/
+$a__bg: $brown; /*                         цвет фона ссылки*/
 $a__bg--hover: false; /*               цвет фона ссылки при наведении*/
 $a__bg--active: false; /*              цвет фона ссылки при клике*/
 
-$a__padding: 13px 22px; /*                   внутренние отступы для всех ссылок*/
-$a__padding--first: false; /*            внутренние отступы для первой ссылки*/
-$a__padding--last: false; /*             внутренние отступы для последней ссылки*/
-
-$a--current: false; /*                    включение стилизации ссылки для текущей страницы*/
+$a--current: true; /*                    включение стилизации ссылки для текущей страницы*/
 $a__bg--current: false; /*                цвет фона ссылки для текущей страницы*/
 $a__color--current: false; /*             цвет шрифта ссылки для текущей страницы*/
-$li__box-shadow: false; /*         тень пункта меню  для текущей страницы*/
-
-$li__margin: false; /*                    внешние отступы пунктов меню*/
-$li__padding: false; /*                 внутреннние отступы пунктов меню*/
-
-$list__fg: false; /*                         включение горизонтального резинового меню*/
-$item__fg: false; /*                         включение горизонтального резиновых пунктов меню*/
+$li__box-shadow: inset 0 -3px $brown; /*         тень пункта меню  для текущей страницы*/
 
 /* шаблон вставки в html
 @@include("../menu/menu--7.html", {
@@ -60,52 +50,24 @@ $item__fg: false; /*                         включение горизонт
 .menu {
   margin: 0;
   padding: 0;
-  
   list-style: none;
   a {
     @include a__font();
     display: block;
-    
+    padding: 13px 22px;
     text-decoration: none;
-    
     background: $a__bg;
-    @if ($a__padding) {
-      padding: $a__padding;
-    }
     &:hover {
       color: $a__color--hover;
-      
       background: $a__bg--hover;
     }
     &:active {
       color: $a__color--active;
-      
       background: $a__bg--active;
     }
   }
   @at-root .menu__item {
     display: block;
-    @if ($li__margin) {
-      margin: $li__margin;
-    }
-    @if ($li__padding) {
-      padding: $li__padding;
-    }
-    
-    @if ($a__padding--first) {
-      &:first-child {
-        a {
-          padding-left: $a__padding--first;
-        }
-      }
-    }
-    @if ($a__padding--last) {
-      &:last-child {
-        a {
-          padding-right: $a__padding--last;
-        }
-      }
-    }
     @if ($a--current) {
       &--current {
         cursor: default;
@@ -135,35 +97,74 @@ $item__fg: false; /*                         включение горизонт
   }
 }
 
-.menu--horizontal {
-  display: flex;
-  flex-wrap: wrap;
-  @if ($list__fg) {
-    flex-grow: $list__fg;
+.menu--nav-mobile {
+  a {
+    border-bottom: 1px solid $brown-dark--2;
+    box-shadow: inset 0 1px 0 $brown-light--1;
   }
-  .menu__item {
-    display: flex;
-    justify-content: center;
-    @if ($item__fg) {
-      flex-grow: $item__fg;
+}
+
+.menu--user {
+  a {
+    @include pseudo-before(16px, 16px);
+    position: relative;
+    padding-left: 49px;
+    font-weight: 400;
+    text-transform: none;
+    border: none;
+    &::before {
+      @include center(absolute, false, true);
+      left: 20px;
+      
+      background: url("../img/pic__login.png") left top no-repeat;
+      opacity: 0.3;
     }
   }
 }
 
-.menu--nav-mobile {
-  a {
-    border-bottom: 1px solid #71543f;
-    box-shadow: inset 0 1px 0 #886e5b;
+@media ($tablet__width-mq) {
+  /*Горизонтальное меню*/
+  .menu {
+    display: flex;
+    flex-wrap: wrap;
+    a {
+      padding: 25px 0;
+      background-color: transparent;
+      border: none;
+    }
+  }
+  .menu__item {
+    display: flex;
+    justify-content: center;
+    margin-right: 33px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  
+  .menu--user {
+    a {
+      min-width: 47px;
+      font-size: 0;
+      &::before {
+        left: 0;
+      }
+    }
   }
 }
 
-.menu--user-mobile {
-  a {
-    padding-left: 49px;
-    
-    font-weight: 400;
-    text-transform: none;
-    
-    border-color: transparent;
+@media ($desktop__width-mq) {
+  .menu__item {
+    margin-right: 65px;
+  }
+  
+  .menu--user {
+    a {
+      min-width: 72px;
+      font-weight: 700;
+      font-size: 18px;
+      text-align: right;
+      text-transform: uppercase;
+    }
   }
 }

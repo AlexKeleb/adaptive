@@ -1,0 +1,101 @@
+@import "../../scss/variables.scss";
+@import "../../scss/mixins.scss";
+
+.form {
+  margin: 0;
+  padding: 0 0 39px;
+}
+
+.form__group {
+  margin: 0;
+  padding: 0 0 26px;
+  border: none;
+}
+
+.form__input {
+  @include font--first(18px, 30px, $black);
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 6px;
+  padding: 9px 17px;
+  border: 1px solid $gray;
+  outline: none;
+  &::placeholder {
+    color: $black;
+    opacity: 1;
+  }
+}
+
+.form__more-info {
+  padding-bottom: 11px;
+}
+
+.form__submit {
+  margin-top: 21px;
+}
+
+@media ($tablet__width-mq) {
+  .form {
+    padding: 50px 0 77px;
+  }
+  
+  .form__group {
+    padding-bottom: 0;
+  }
+  
+  .form__group-name {
+    display: flex;
+    flex-wrap: wrap;
+    input {
+      width: 33.3%;
+    }
+  }
+  .form__input {
+    margin-bottom: 34px;
+    padding: 19px 24px;
+    font-size: 24px;
+  }
+  
+  .form__more-info {
+    height: 212px;
+  }
+  
+  .form__last-name {
+    order: 2;
+  }
+  
+  .form__patronymic {
+    order: 3;
+  }
+  
+  .form__submit {
+    margin-top: 7px;
+  }
+}
+
+@media ($desktop__width-mq) {
+  .form {
+    padding-bottom: 88px;
+  }
+  
+  .form__group-name {
+    justify-content: space-between;
+    input {
+      width: 30.7%;
+    }
+  }
+  
+  .form__group-contact {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    .form__input {
+      width: 48.3%;
+      margin-top: 0;
+    }
+  }
+  
+  .form__submit {
+    margin-top: 28px;
+  }
+}

@@ -1,0 +1,121 @@
+@import "../../scss/variables";
+@import "../../scss/mixins";
+
+/* шаблон вставки в html 
+@@include("../selector-checkbox/selector-checkbox--5.html", {
+"second-class": "selector-checkbox--",
+"legend": "",
+"label1": "",
+"label2": "",
+"label3": "",
+"label4": "",
+"label5": "",
+"label6": "",
+"attr1": "",
+"attr2": "",
+"attr3": "",
+"attr4": "",
+"attr5": "",
+"attr6": ""
+})
+*/
+
+.selector-checkbox {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  input {
+    display: none;
+    &:checked + i {
+      &::after {
+        display: block;
+      }
+    }
+  }
+}
+
+.selector-checkbox__wrapper {
+  padding-top: 40px;
+}
+
+.selector-checkbox__title {
+  @include font--first(20px, 27px, $black, 400, uppercase);
+  width: 100%;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.selector-checkbox__item {
+  @include font--first(18px, 24px, $black);
+  position: relative;
+  display: block;
+  padding-bottom: 32px;
+  padding-left: 60px;
+  &:active {
+    i {
+      &::before {
+        background: $gray-dark--1;
+      }
+    }
+  }
+  i {
+    &::before {
+      @include checkbox-out(34px, 34px, $white);
+      top: -7px;
+      left: 0;
+      border: 1px solid $gray;
+    }
+    &::after {
+      @include checkbox-in(19px, 7px, 2px, $black);
+      top: 2px;
+      left: 7px;
+    }
+  }
+}
+
+@media ($tablet__width-mq) {
+  .selector-checkbox__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 53px;
+  }
+  
+  .selector-checkbox__title {
+    @include hr(1px, $gray);
+    margin-bottom: 77px;
+    font-size: 30px;
+    span {
+      position: relative;
+      z-index: 2;
+      padding: 0 25px;
+      background: $gray-light--1;
+    }
+  }
+  
+  .selector-checkbox__item {
+    box-sizing: border-box;
+    width: 50%;
+    padding-bottom: 59px;
+    font-size: 24px;
+    &:nth-child(3) {
+      order: 5;
+    }
+    &:nth-child(5) {
+      order: 6;
+    }
+    &:nth-child(7) {
+      order: 7;
+    }
+  }
+}
+
+@media ($desktop__width-mq) {
+  .selector-checkbox__wrapper {
+    padding-top: 54px;
+  }
+  
+  .selector-checkbox__item {
+    width: 33.3%;
+  }
+}

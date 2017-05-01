@@ -1,0 +1,145 @@
+@import "../../scss/variables";
+@import "../../scss/mixins";
+
+/* шаблон вставки в html 
+@@include("../selector-radio/selector-radio--5.html", {
+"second-class": "selector-radio--",
+"legend": "",
+"label1": "",
+"label2": "",
+"label3": "",
+"label4": "",
+"label5": "",
+"label6": "",
+"attr1": "",
+"attr2": "",
+"attr3": "",
+"attr4": "",
+"attr5": "",
+"attr6": ""
+})
+*/
+
+.selector-radio {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  svg {
+    @include center();
+    top: 98px;
+  }
+  input {
+    display: none;
+    &:checked + i {
+      &::after {
+        display: block;
+      }
+    }
+  }
+}
+
+.selector-radio__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 22px;
+}
+
+.selector-radio__title {
+  @include font--first(20px, 27px, $black, 400, uppercase);
+  width: 100%;
+  margin-bottom: 37px;
+  text-align: center;
+}
+
+.selector-radio__item {
+  @include font--first(18px, 24px, $black);
+  position: relative;
+  width: 93px;
+  padding-top: 61px;
+  padding-bottom: 121px;
+  text-align: center;
+  text-transform: lowercase;
+  &:hover {
+    i {
+      &::before {
+      }
+      &::after {
+      }
+    }
+  }
+  &:active {
+    opacity: 0.3;
+  }
+  i {
+    @include center();
+    @include pseudo-before(50px, 50px);
+    @include pseudo-after(17px, 17px);
+    top: 0;
+    display: block;
+    width: 50px;
+    height: 50px;
+    &::before {
+      @include center(absolute, true, true);
+      box-sizing: border-box;
+      background: $white;
+      border: 1px solid $gray;
+      border-radius: 50%;
+    }
+    &::after {
+      @include center(absolute, true, true);
+      display: none;
+      border: 1px solid $gray;
+      border-radius: 50%;
+    }
+  }
+}
+
+@media ($tablet__width-mq) {
+  .selector-radio {
+    padding-top: 13px;
+    svg {
+      top: 133px;
+    }
+  }
+  
+  .selector-radio__wrapper {
+    justify-content: space-between;
+    padding: 0 3px;
+  }
+  
+  .selector-radio__title {
+    @include hr(1px, $gray);
+    margin-bottom: 48px;
+    font-size: 30px;
+    span {
+      position: relative;
+      z-index: 2;
+      padding: 0 25px;
+      background: $gray-light--1;
+    }
+  }
+  
+  .selector-radio__item {
+    padding-top: 78px;
+    padding-bottom: 140px;
+    font-size: 24px;
+  }
+}
+
+@media ($desktop__width-mq) {
+  .selector-radio__wrapper {
+    padding: 0 35px;
+  }
+  
+  .selector-radio {
+    padding-top: 28px;
+  }
+  
+  .selector-radio__title {
+    margin-bottom: 54px;
+    span {
+      padding: 0 40px;
+    }
+  }
+}
