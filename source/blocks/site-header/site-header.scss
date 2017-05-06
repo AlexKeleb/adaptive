@@ -1,7 +1,7 @@
 @import "../../scss/variables.scss";
 @import "../../scss/mixins.scss";
 
-.site-header__wrapper {
+.site-header {
   @include container($mobile__container-width);
   position: relative;
   z-index: 5;
@@ -21,7 +21,7 @@
 }
 
 @media ($tablet__width-mq) {
-  .site-header__wrapper {
+  .site-header {
     @include container($tablet__container-width);
     display: flex;
     flex-direction: column;
@@ -42,7 +42,7 @@
 }
 
 @media ($desktop__width-mq) {
-  .site-header__wrapper {
+  .site-header {
     @include container($desktop__container-width);
     background-image: url("../img/bg__header--desktop.jpg");
   }
@@ -51,6 +51,7 @@
     height: 646px;
     img {
       margin-top: 54px;
+      margin-left: 0;
     }
   }
 }

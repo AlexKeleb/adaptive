@@ -1,12 +1,9 @@
 <section class="appointment">
-    <div class="appointment__wrapper">
+    <h2 class="appointment__title">Запись на стрижку</h2>
+    <a class="appointment__link-home  btn  btn--dark  btn--tablet" href="indexs.html">На главную</a>
 
-        <h2 class="appointment__title">Запись на стрижку</h2>
-        <a class="appointment__link-home  btn  btn--dark  btn--tablet" href="indexs.html">На главную</a>
+    @@include("../form/form.html", {
+    "second-class": "appointment__form"
+    })
 
-        @@include("../form/form.html", {
-        "second-class": "appointment__form"
-        })
-
-    </div>
 </section>

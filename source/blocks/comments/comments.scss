@@ -22,6 +22,7 @@
 }
 
 .comments__item {
+  box-sizing: border-box;
   margin: 0 0 20px;
   padding: 0;
   border: 1px solid $gray;
@@ -32,24 +33,28 @@
     padding-top: 19px;
   }
   .comments__advanced-list {
-    padding: 0 0 2px;
-  }
-}
-
-.comments__item--vladimir {
-  .comments__advanced-item {
-    width: 43%;
-    &:first-child {
-      margin-left: 8px;
-      padding-left: 48px;
-    }
+    padding-bottom: 1px;
   }
 }
 
 .comments__photo {
+  position: relative;
   img {
     vertical-align: top;
   }
+}
+
+.comments__label {
+  @include triangle-container-edge($brown, left, 25px, 9px);
+  position: absolute;
+  bottom: 29px;
+  left: 0;
+  padding: 11px 20px 12px 24px;
+  font-weight: 700;
+  font-size: 20px;
+  color: $white;
+  text-transform: uppercase;
+  background: $brown;
 }
 
 .comments__author {
@@ -74,13 +79,15 @@
 }
 
 .comments__advanced-item {
-  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   box-sizing: border-box;
-  width: 50%;
-  margin-bottom: 14px;
-  padding-left: 56px;
-  svg {
-    @include center(absolute, false, true);
+  margin-right: 15px;
+  margin-bottom: 15px;
+  padding-left: 20px;
+  &:nth-child(2n) {
+    margin-right: 0;
   }
   span {
     font-size: 16px;
@@ -89,19 +96,35 @@
 }
 
 .comments__advanced-item--mustache {
-  padding-left: 66px;
+  width: 92px;
+  padding-left: 9px;
+}
+
+.comments__advanced-item--haircut {
+  width: 113px;
+}
+
+.comments__advanced-item--beard {
+  width: 105px;
+  margin-right: 21px;
+}
+
+.comments__advanced-item--shaving {
+  width: 110px;
 }
 
 @media ($tablet__width-mq) {
   .comments {
     @include container($tablet__container-width, $tablet__container-padding);
     @include triangle-container-edge($gray-light--1, bottom, 384px, 42px);
+    @include triangle-container($gray-light--1, bottom, 384px, 42px);
     position: relative;
     z-index: 20;
     display: flex;
     flex-wrap: wrap;
     margin-top: -183px;
     padding-top: 33px;
+    padding-bottom: 23px;
   }
   
   .comments__title {
@@ -123,23 +146,37 @@
     margin-bottom: 39px;
   }
   
+  .comments__label {
+    top: 35px;
+    bottom: auto;
+    left: -4px;
+  }
+  
   .comments__content {
     display: flex;
     flex-direction: column;
-    padding: 17px 61px 14px 29px;
+    padding: 17px 29px 14px;
   }
   
   .comments__author {
     padding-bottom: 26px;
   }
   
-  .comments__advanced-list {
-    margin-top: auto;
-    outline: 1px solid black;
+  .comments__text {
+    padding-right: 20px;
   }
   
-  .comments__advanced-item {
-    padding-left: 59px;
+  .comments__advanced-list {
+    margin-top: auto;
+    padding-bottom: 10px;
+  }
+  
+  .comments__advanced-item--haircut {
+    width: 115px;
+  }
+  
+  .comments__advanced-item--beard {
+    width: 107px;
   }
   
   .comments__item--first {
@@ -147,29 +184,82 @@
       padding-top: 26px;
     }
     .comments__content {
-      padding-right: 20px;
       padding-bottom: 17px;
     }
-    .comments__advanced-item {
-      padding-left: 63px;
-      width: 44%;
-      &:nth-child(2) {
-        padding-left: 55px;
-      }
-      &:nth-child(3) {
-        padding-left: 68px;
-      }
+  }
+}
+
+@media ($desktop__width-mq) {
+  .comments {
+    @include container($desktop__container-width, $desktop__container-padding);
+    @include triangle-container-edge($gray-light--1, bottom, 600px, 65px);
+    margin-top: -340px;
+    padding-bottom: 48px;
+    &::after {
+      display: none;
     }
   }
   
-  .comments__item--vladimir {
+  .comments__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-top: 60px;
+  }
+  
+  .comments__item {
+    position: relative;
+    flex-direction: column;
+    width: 294px;
+  }
+  
+  .comments__photo {
+    position: static;
+  }
+  
+  .comments__label {
+    top: 26px;
+    right: 0;
+    left: auto;
+    &::before {
+      left: 0;
+      transform: rotate(180deg) translateY(50%);
+    }
+  }
+  
+  .comments__content {
+    flex-grow: 1;
+    padding: 6px 11px 6px 13px;
+  }
+  
+  .comments__text {
+    padding-bottom: 25px;
+    br {
+      display: none;
+    }
+  }
+  
+  .comments__item--first {
+    flex-direction: row;
+    width: 100%;
+    .comments__content {
+      padding-top: 103px;
+      padding-bottom: 12px;
+      padding-left: 18px;
+    }
+    .comments__text {
+      padding-right: 125px;
+    }
     .comments__advanced-item {
-      outline: 1px solid black;
-      width: auto;
-      &:first-child{
-      margin-left: 11px;
-        margin-right: 28px;
+      &:nth-child(2n) {
+        margin-right: 26px;
       }
+      &:nth-child(3n) {
+        margin-right: 0;
+      }
+    }
+    .comments__advanced-item--shaving {
+      width: 105px;
     }
   }
 }

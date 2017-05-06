@@ -178,13 +178,12 @@
   border-right-color: transparent;
 }
 
-//крестик для закрытия попапов (ширина блока, высота блока, фон блока, форма блока, длинна палочек, толщина палочек, цвет палочек)
-@mixin modal-close($Bwidth: 40px, $Bheight: 40px, $bg: transparent, $radius: false, $Xwidth: 26px, $Xheight: 6px, $Xcolor: red) {
+//крестик для закрытия попапов (ширина блока, высота блока, длинна палочек, толщина палочек, цвет палочек)
+@mixin modal-close($Bwidth: 40px, $Bheight: 40px, $Xwidth: 26px, $Xheight: 6px, $Xcolor: red) {
   position: absolute;
+  box-sizing: border-box;
   width: $Bwidth;
   height: $Bheight;
-  border-radius: $radius;
-  background: $bg;
   cursor: pointer;
   @include pseudo-before($Xwidth, $Xheight);
   @include pseudo-after($Xwidth, $Xheight);
@@ -245,16 +244,36 @@
   }
 }
 
-//граница контейнера в виде краев от клина (цвет, ширина стороны угла, высота угла)
+//граница контейнера в виде краев от клина (цвет, расположение (наоборот), ширина стороны угла, высота угла)
 @mixin triangle-container-edge($background, $direction, $width, $height) {
   position: relative;
   &::before {
     @include triangle(transparent, $direction, $height);
-    @include center();
-    top: -1 * $height + $height * 0.4;
-    border-right: $width solid $background;
-    border-left: $width solid $background;
     z-index: 2000;
+    @if ($direction == bottom) {
+      @include center();
+      top: -1 * $height + $height * 0.4;
+      border-right: $width solid $background;
+      border-left: $width solid $background;
+    }
+    @if ($direction == top) {
+      @include center();
+      bottom: -1 * $height + $height * 0.4;
+      border-right: $width solid $background;
+      border-left: $width solid $background;
+    }
+    @if ($direction == left) {
+      @include center(absolute, false, true);
+      right: -1 * $height;
+      border-top: $width solid $background;
+      border-bottom: $width solid $background;
+    }
+    @if ($direction == right) {
+      @include center(absolute, false, true);
+      left: -1 * $height;
+      border-top: $width solid $background;
+      border-bottom: $width solid $background;
+    }
   }
 }
 

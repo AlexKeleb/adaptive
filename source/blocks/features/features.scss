@@ -3,9 +3,6 @@
 
 .features {
   @include font--first(20px, 27px, $gray-light--2);
-}
-
-.features__wrapper {
   @include container($mobile__container-width);
   background: $black-light--1;
 }
@@ -17,7 +14,7 @@
   text-align: center;
   svg {
     @include center();
-    top: 0;
+    top: 24px;
   }
   h3 {
     margin: 0;
@@ -44,7 +41,7 @@
 }
 
 @media ($tablet__width-mq) {
-  .features__wrapper {
+  .features {
     @include container($tablet__container-width, $tablet__container-padding);
     background: $black-light--3;
   }
@@ -61,15 +58,19 @@
       border-bottom: none;
     }
     svg {
-      top: 17px;
+      top: 45px;
       left: -7px;
       transform: none;
     }
   }
+  
+  .features__item--expensive {
+    padding: 40px 0 37px 119px;
+  }
 }
 
 @media ($desktop__width-mq) {
-  .features__wrapper {
+  .features {
     @include container($desktop__container-width, $desktop__container-padding);
   }
   
@@ -91,7 +92,7 @@
     }
     svg {
       @include center();
-      top: -30px;
+      top: 0;
     }
   }
   

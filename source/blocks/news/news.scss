@@ -3,9 +3,6 @@
 
 .news {
   @include font--first(18px, 27px, $black);
-}
-
-.news__wrapper {
   @include container($mobile__container-width);
   box-sizing: border-box;
   padding: 68px 19px 28px 20px;
@@ -76,7 +73,7 @@
 }
 
 @media ($tablet__width-mq) {
-  .news__wrapper {
+  .news {
     @include container($tablet__container-width, $tablet__container-padding);
     display: flex;
     flex-wrap: wrap;
@@ -116,7 +113,7 @@
 }
 
 @media ($desktop__width-mq) {
-  .news__wrapper {
+  .news {
     @include container($desktop__container-width, $desktop__container-padding);
     padding-top: 118px;
     padding-bottom: 22px;

@@ -1,65 +1,60 @@
-<section class="reviews">
-    <div class="reviews__wrapper  slider  slider--reviews">
+<section class="reviews  slider  slider--reviews">
+    <h2 class="reviews__title">Отзывы о нас</h2>
+    <a href="#" class="reviews__write  btn  btn--dark  btn--tablet">Оставить свой</a>
 
-        <h2 class="reviews__title">Отзывы о нас</h2>
+    <ul class="slider__list">
+        <button class="slider__button  slider__button--prev  btn  btn--dark" type="button">Предыдущий</button>
 
-        <a href="#" class="reviews__write  btn  btn--dark  btn--tablet">Оставить свой</a>
+        <li class="slider__item  slider__item--show">
+            <blockquote class="reviews__item">
+                <div class="reviews__author-photo">
+                    <picture>
+                        <source media="(min-width: 1200px)" srcset="img/img__reviews-travis--desktop.jpg">
+                        <source media="(min-width: 768px)" srcset="img/img__reviews-travis--tablet.jpg">
+                        <img src="img/img__reviews-travis--mobile.jpg" alt="Трэвис Баркер">
+                    </picture>
+                </div>
 
-        <ul class="slider__list">
+                <cite>Трэвис Баркер</cite>
+                <p>Спасибо за лысину! Был проездом в Москве, заскочил побриться, чтобы было видно новую
+                    татуировку!</p>
+            </blockquote>
+        </li>
 
-            <button class="slider__button  slider__button--prev  btn  btn--dark" type="button">Предыдущий</button>
+        <li class="slider__item">
+            <blockquote class="reviews__item">
+                <div class="reviews__author-photo">
+                    <img src="" alt="">
+                </div>
 
-            <li class="slider__item  slider__item--show">
-                <blockquote class="reviews__item">
-                    <div class="reviews__author-photo">
-                        <picture>
-                            <source media="(min-width: 1200px)" srcset="img/img__reviews-travis--desktop.jpg">
-                            <source media="(min-width: 768px)" srcset="img/img__reviews-travis--tablet.jpg">
-                            <img src="img/img__reviews-travis--mobile.jpg" alt="Трэвис Баркер">
-                        </picture>
-                    </div>
+                <cite class="reviews__author-name">Винстон Синий</cite>
+                <p>Как только заростаю и волосы начинают мешать видеть — бегом в Бородинский!</p>
+            </blockquote>
+        </li>
 
-                    <cite>Трэвис Баркер</cite>
-                    <p>Спасибо за лысину! Был проездом в Москве, заскочил побриться, чтобы было видно новую
-                        татуировку!</p>
-                </blockquote>
-            </li>
+        <li class="slider__item">
+            <blockquote class="reviews__item">
+                <div class="reviews__author-photo">
+                    <img src="" alt="">
+                </div>
 
-            <li class="slider__item">
-                <blockquote class="reviews__item">
-                    <div class="reviews__author-photo">
-                        <img src="" alt="">
-                    </div>
+                <cite class="reviews__author-name">Лжепётр Мчиславский</cite>
+                <p>Где я только ни стригся, но так как делаете это вы — не умеет никто другой! Еще раз спасибо и до
+                    скорого!</p>
+            </blockquote>
+        </li>
 
-                    <cite class="reviews__author-name">Винстон Синий</cite>
-                    <p>Как только заростаю и волосы начинают мешать видеть — бегом в Бородинский!</p>
-                </blockquote>
-            </li>
+        <button class="slider__button  slider__button--next  btn  btn--dark" type="button">Следующий</button>
 
-            <li class="slider__item">
-                <blockquote class="reviews__item">
-                    <div class="reviews__author-photo">
-                        <img src="" alt="">
-                    </div>
+    </ul>
 
-                    <cite class="reviews__author-name">Лжепётр Мчиславский</cite>
-                    <p>Где я только ни стригся, но так как делаете это вы — не умеет никто другой! Еще раз спасибо и до
-                        скорого!</p>
-                </blockquote>
-            </li>
-
-            <button class="slider__button  slider__button--next  btn  btn--dark" type="button">Следующий</button>
-
-        </ul>
-
-        <div class="reviews__selectors  slider__selectors">
-            <input class="slider__input" type="radio" name="slider" id="reviews-input-1" checked>
-            <label class="reviews__toggle  slider__toggle" for="reviews-input-1"></label>
-            <input class="slider__input" type="radio" name="slider" id="reviews-input-2">
-            <label class="reviews__toggle  slider__toggle" for="reviews-input-2"></label>
-            <input class="slider__input" type="radio" name="slider" id="reviews-input-3">
-            <label class="reviews__toggle  slider__toggle" for="reviews-input-3"></label>
-        </div>
-
+    <div class="reviews__selectors  slider__selectors">
+        <input class="slider__input" type="radio" name="slider" id="reviews-input-1" checked>
+        <label class="reviews__toggle  slider__toggle" for="reviews-input-1"></label>
+        <input class="slider__input" type="radio" name="slider" id="reviews-input-2">
+        <label class="reviews__toggle  slider__toggle" for="reviews-input-2"></label>
+        <input class="slider__input" type="radio" name="slider" id="reviews-input-3">
+        <label class="reviews__toggle  slider__toggle" for="reviews-input-3"></label>
     </div>
+
 </section>

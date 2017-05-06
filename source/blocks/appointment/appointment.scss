@@ -3,9 +3,6 @@
 
 .appointment {
   @include font--first(18px, 30px, $black);
-}
-
-.appointment__wrapper {
   @include container($mobile__container-width, $mobile__container-padding);
   @include triangle-container($gray-light--1, bottom, 160px, 34px);
   background: $gray-light--1;
@@ -25,16 +22,13 @@
 
 @media ($tablet__width-mq) {
   .appointment {
-    margin-top: -183px;
-  }
-  
-  .appointment__wrapper {
     @include container($tablet__container-width, $tablet__container-padding);
     @include triangle-container-edge($gray-light--1, bottom, 384px, 42px);
     position: relative;
     z-index: 20;
     display: flex;
     flex-wrap: wrap;
+    margin-top: -183px;
     padding-top: 32px;
     &::after {
       display: none;
@@ -53,12 +47,9 @@
 }
 
 @media ($desktop__width-mq) {
-  .appointment{
-    margin-top: -340px;
-  }
-  
-  .appointment__wrapper {
+  .appointment {
     @include container($desktop__container-width, $desktop__container-padding);
     @include triangle-container-edge($gray-light--1, bottom, 600px, 65px);
+    margin-top: -340px;
   }
 }

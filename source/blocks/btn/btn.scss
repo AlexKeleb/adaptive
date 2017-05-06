@@ -62,12 +62,17 @@ $btn__padding: 12px;
 
 .btn--dark {
   color: $black;
+  background: transparent;
   border-color: $gray;
 }
 
 .btn--color {
   background-color: $brown;
   border-color: $brown;
+}
+
+.btn--popup {
+  width: 180px;
 }
 
 @media ($tablet__width-mq) {
@@ -95,5 +100,9 @@ $btn__padding: 12px;
   .btn--form {
     font-size: 24px;
     line-height: 42px;
+  }
+  
+  .btn--popup {
+    width: 320px;
   }
 }

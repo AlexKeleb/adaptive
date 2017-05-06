@@ -2,6 +2,7 @@
 @import "../../scss/mixins.scss";
 
 .price {
+  @include container($mobile__container-width);
   @include font--first(20px, 27px, $white);
   @include triangle-container($black-light--3, bottom, 160px, 34px);
   padding: 70px 19px 18px;
@@ -35,7 +36,7 @@
 .price__discount {
   margin: 0;
   padding: 18px 18px 18px 113px;
-  background: url("../../img/pic__clock.svg") 22px 15px no-repeat;
+  background: url("../../img/pic__clock.svg") 22px 43% no-repeat;
   background-size: 58px 57px;
   border: 1px solid $black-light--5;
 }
@@ -66,5 +67,93 @@
   .price__cost {
     flex-grow: 1;
     text-align: right;
+  }
+}
+
+@media ($tablet__width-mq) {
+  .price {
+    @include container($tablet__container-width, $tablet__container-padding);
+    padding-bottom: 55px;
+    &::after {
+      display: none;
+    }
+  }
+  
+  .price__title {
+    padding-top: 18px;
+    padding-bottom: 55px;
+    font-size: 40px;
+    text-align: left;
+  }
+  
+  .price__table {
+    margin-bottom: 9px;
+    td {
+      box-sizing: border-box;
+      padding: 13px 19px 14px;
+      border: 1px solid $black-light--6;
+    }
+  }
+  
+  .price__number {
+    width: 71px;
+    text-align: center;
+  }
+  
+  .price__service {
+    width: 250px;
+  }
+  
+  .price__advance {
+    width: 160px;
+    span {
+      display: none;
+    }
+  }
+  
+  .price__cost {
+    width: 162px;
+  }
+  
+  .price__discount {
+    padding: 41px 41px 43px 184px;
+    font-weight: 700;
+    font-size: 30px;
+    text-transform: uppercase;
+    background-position: 26px 50%;
+    background-size: 72px 71px;
+  }
+}
+
+@media ($desktop__width-mq) {
+  .price {
+    @include container($desktop__container-width, $desktop__container-padding);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom: 60px;
+  }
+  
+  .price__title {
+    width: 100%;
+    padding-top: 11px;
+  }
+  
+  .price__cost {
+    width: 148px;
+  }
+  
+  .price__discount {
+    align-self: flex-start;
+    box-sizing: border-box;
+    width: 269px;
+    padding: 21px 50px;
+    padding-top: 199px;
+    font-weight: 400;
+    font-size: 20px;
+    text-align: center;
+    text-transform: none;
+    background-position: 50% 33px;
+    background-size: 142px 139px;
   }
 }

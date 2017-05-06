@@ -1,15 +1,17 @@
 <section class="comments">
-
     <h2 class="comments__title">Наши работы</h2>
     <a class="comments__link-home  btn  btn--dark  btn--tablet" href="index.html">На главную</a>
 
     <div class="comments__list">
-
         <blockquote class="comments__item  comments__item--first">
-            <picture class="comments__photo">
-                <source srcset="img/img__photo-petr--tablet.jpg" media="(min-width: 768px)">
-                <img src="img/img__photo-petr--mobile.jpg" alt="Лжепётр Мчиславский">
-            </picture>
+            <div class="comments__photo">
+                <picture>
+                    <source srcset="img/img__photo-petr--desktop.jpg" media="(min-width: 1200px)">
+                    <source srcset="img/img__photo-petr--tablet.jpg" media="(min-width: 768px)">
+                    <img src="img/img__photo-petr--mobile.jpg" alt="Лжепётр Мчиславский">
+                </picture>
+                <div class="comments__label">Работа месяца</div>
+            </div>
             <div class="comments__content">
                 <cite class="comments__author">Лжепётр Мчиславский</cite>
                 <p class="comments__text">
@@ -17,12 +19,12 @@
                     скорого!
                 </p>
                 <ul class="comments__advanced-list">
-                    <li class="comments__advanced-item">
+                    <li class="comments__advanced-item  comments__advanced-item--haircut">
                         @@include("../symbol/symbol.html", {
                         "name": "icon__scissors"})
                         <span>Стрижка</span>
                     </li>
-                    <li class="comments__advanced-item">
+                    <li class="comments__advanced-item  comments__advanced-item--shaving">
                         @@include("../symbol/symbol.html", {
                         "name": "icon__beard"})
                         <span>Бритье</span>
@@ -38,16 +40,17 @@
 
         <blockquote class="comments__item">
             <picture class="comments__photo">
+                <source srcset="img/img__photo-sasha--desktop.jpg" media="(min-width: 1200px)">
                 <source srcset="img/img__photo-sasha--tablet.jpg" media="(min-width: 768px)">
                 <img src="img/img__photo-sasha--mobile.jpg" alt="Лжепётр Мчиславский">
             </picture>
             <div class="comments__content">
                 <cite class="comments__author">Саша Мальцев</cite>
                 <p class="comments__text">
-                    Попросил омолодить и омолодили! Кто теперь скажет, что мне 45?
+                    Попросил омолодить и омолодили! <br>Кто теперь скажет, что мне 45?
                 </p>
                 <ul class="comments__advanced-list">
-                    <li class="comments__advanced-item">
+                    <li class="comments__advanced-item  comments__advanced-item--haircut">
                         @@include("../symbol/symbol.html", {
                         "name": "icon__scissors"})
                         <span>Стрижка</span>
@@ -56,8 +59,9 @@
             </div>
         </blockquote>
 
-        <blockquote class="comments__item  comments__item--vladimir">
+        <blockquote class="comments__item">
             <picture class="comments__photo">
+                <source srcset="img/img__photo-vladimir--desktop.jpg" media="(min-width: 1200px)">
                 <source srcset="img/img__photo-vladimir--tablet.jpg" media="(min-width: 768px)">
                 <img src="img/img__photo-vladimir--mobile.jpg" alt="Лжепётр Мчиславский">
             </picture>
@@ -67,7 +71,7 @@
                     К зимнему сезону — готов!
                 </p>
                 <ul class="comments__advanced-list">
-                    <li class="comments__advanced-item">
+                    <li class="comments__advanced-item  comments__advanced-item--beard">
                         @@include("../symbol/symbol.html", {
                         "name": "icon__beard"})
                         <span>Борода</span>
@@ -83,16 +87,17 @@
 
         <blockquote class="comments__item">
             <picture class="comments__photo">
+                <source srcset="img/img__photo-winston--desktop.jpg" media="(min-width: 1200px)">
                 <source srcset="img/img__photo-winston--tablet.jpg" media="(min-width: 768px)">
                 <img src="img/img__photo-winston--mobile.jpg" alt="Лжепётр Мчиславский">
             </picture>
             <div class="comments__content">
                 <cite class="comments__author">Винстон Синий</cite>
                 <p class="comments__text">
-                    Как только заростаю и волосы начинают мешать видеть — бегом в Бородинский!
+                    Как только заростаю и волосы <br>начинают мешать видеть — бегом <br>в Бородинский!
                 </p>
                 <ul class="comments__advanced-list">
-                    <li class="comments__advanced-item">
+                    <li class="comments__advanced-item  comments__advanced-item--haircut">
                         @@include("../symbol/symbol.html", {
                         "name": "icon__scissors"})
                         <span>Стрижка</span>

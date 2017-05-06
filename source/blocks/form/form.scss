@@ -17,12 +17,11 @@
   box-sizing: border-box;
   width: 100%;
   margin-bottom: 6px;
-  padding: 9px 17px;
+  padding: 7px 17px 11px;
   border: 1px solid $gray;
   outline: none;
   &::placeholder {
     color: $black;
-    opacity: 1;
   }
 }
 

@@ -165,7 +165,7 @@
   }
   
   .stats__item--value {
-    padding-bottom: 12px;
+    padding-bottom: 7px;
     font-size: 72px;
     line-height: 72px;
     sup {
@@ -174,7 +174,10 @@
   }
   
   .stats__item--field {
-    padding-bottom: 7px;
+    padding-bottom: 3px;
+    padding-left: 4px;
+    font-size: 20px;
+    line-height: 27px;
     text-align: left;
     br {
       display: none;

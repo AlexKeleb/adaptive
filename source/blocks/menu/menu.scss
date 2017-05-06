@@ -101,6 +101,9 @@ $li__box-shadow: inset 0 -3px $brown; /*         тень пункта меню 
   a {
     border-bottom: 1px solid $brown-dark--2;
     box-shadow: inset 0 1px 0 $brown-light--1;
+    span {
+      display: none;
+    }
   }
 }
 
@@ -111,12 +114,12 @@ $li__box-shadow: inset 0 -3px $brown; /*         тень пункта меню 
     padding-left: 49px;
     font-weight: 400;
     text-transform: none;
+    background-color: transparent;
     border: none;
     &::before {
       @include center(absolute, false, true);
       left: 20px;
-      
-      background: url("../img/pic__login.png") left top no-repeat;
+      background: url("../img/sprite/sprite.png") -50px -50px no-repeat;
       opacity: 0.3;
     }
   }
@@ -131,6 +134,10 @@ $li__box-shadow: inset 0 -3px $brown; /*         тень пункта меню 
       padding: 25px 0;
       background-color: transparent;
       border: none;
+      box-shadow: none;
+      span {
+        display: inline;
+      }
     }
   }
   .menu__item {

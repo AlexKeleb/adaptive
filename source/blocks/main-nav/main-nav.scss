@@ -7,19 +7,21 @@
   min-height: 568px;
   margin-left: 70px;
   background-color: $brown-dark--1;
-  @include pseudo-before(8px, 100%);
+  @include pseudo-before(6px, 100%);
   &::before {
+    @include gradient-x($black-light--5, transparent);
     top: 0;
     left: 0;
-    background: url("../img/pic__main-nav-mobile-shadow.png") top left repeat-y;
+    z-index: 10;
   }
 }
 
 .main-nav__toggle {
-  @include modal-close(70px, 50px, $brown-dark--1, null, 34px, 2px, $white);
+  @include modal-close(70px, 50px, 34px, 2px, $white);
   top: 0;
   left: -70px;
   font-size: 0;
+  background: $brown-dark--1;
   border: none;
   outline: none;
 }
@@ -39,8 +41,6 @@
     }
     a {
       text-align: center;
-      border: none;
-      box-shadow: none;
     }
     .main-nav__toggle {
       &::before {
@@ -60,14 +60,18 @@
     box-sizing: border-box;
     min-height: 568px;
     margin-left: 70px;
+    &::before {
+      display: block;
+    }
     .main-nav__toggle {
-      @include modal-close(70px, 50px, $brown-dark--1, null, 34px, 2px, #fff);
+      @include modal-close(70px, 50px, 34px, 2px, $white);
       left: -70px;
+      background: $brown-dark--1;
       span {
         display: none;
       }
     }
-    li {
+    .menu__item {
       display: block;
     }
     a {

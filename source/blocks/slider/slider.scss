@@ -23,7 +23,6 @@
   position: relative;
   display: none;
   flex-shrink: 0;
-  box-sizing: border-box;
   width: 50px;
   font-size: 0;
   background: transparent;
@@ -71,15 +70,15 @@
   .slider {
     @include triangle-container($black-light--3, bottom, 384px, 42px);
   }
-  
+
   .slider__item {
     display: block;
   }
-  
+
   .slider__selectors {
     display: none;
   }
-  
+
   .slider--reviews {
     &::after {
       display: none;
@@ -104,12 +103,6 @@
 
 @media ($desktop__width-mq) {
   .slider {
-    &::after {
-      bottom: -65px;
-      border-top-width: 65px;
-      border-right-width: 600px;
-      border-left-width: 600px;
-      
-    }
+    @include triangle-container($black-light--3, bottom, 600px, 65px);
   }
 }

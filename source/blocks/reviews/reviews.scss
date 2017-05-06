@@ -1,7 +1,7 @@
 @import "../../scss/variables.scss";
 @import "../../scss/mixins.scss";
 
-.reviews__wrapper {
+.reviews {
   @include container($mobile__container-width);
   @include font--first(18px, 27px, $black);
   box-sizing: border-box;
@@ -67,7 +67,7 @@
 }
 
 @media ($tablet__width-mq) {
-  .reviews__wrapper {
+  .reviews {
     @include container($tablet__container-width, $tablet__container-padding);
     display: flex;
     flex-wrap: wrap;
@@ -116,9 +116,12 @@
 }
 
 @media ($desktop__width-mq) {
-  .reviews__wrapper {
+  .reviews {
     @include container($desktop__container-width, $desktop__container-padding);
     padding-bottom: 98px;
+    &::after {
+      display: none;
+    }
   }
   
   .reviews__title {
