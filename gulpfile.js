@@ -8,6 +8,7 @@ const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
 const postcss = require('gulp-postcss');
 const sourcemaps = require('gulp-sourcemaps');
+const svgmin = require('gulp-svgmin');
 
 var isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
 
@@ -25,7 +26,6 @@ gulp.task('sorting', function () {
                 ],
                 "properties-order": [
                     {
-                        "emptyLineBefore": true,
                         "properties": [
                             "content",
                             "position",
@@ -37,7 +37,6 @@ gulp.task('sorting', function () {
                         ]
                     },
                     {
-                        "emptyLineBefore": true,
                         "properties": [
                             "display",
                             "flex",
@@ -57,7 +56,6 @@ gulp.task('sorting', function () {
                         ]
                     },
                     {
-                        "emptyLineBefore": true,
                         "properties": [
                             "box-sizing",
                             "width",
@@ -82,7 +80,6 @@ gulp.task('sorting', function () {
                         ]
                     },
                     {
-                        "emptyLineBefore": true,
                         "properties": [
                             "list-style",
                             "list-style-position",
@@ -151,7 +148,6 @@ gulp.task('sorting', function () {
                         ]
                     },
                     {
-                        "emptyLineBefore": true,
                         "properties": [
                             "background",
                             "background-color",
@@ -210,7 +206,6 @@ gulp.task('sorting', function () {
                         ]
                     },
                     {
-                        "emptyLineBefore": true,
                         "properties": [
                             "transition",
                             "transition-delay",
@@ -234,7 +229,6 @@ gulp.task('sorting', function () {
                         ]
                     },
                     {
-                        "emptyLineBefore": true,
                         "properties": [
                             "quotes",
                             "counter-reset",
@@ -260,6 +254,62 @@ gulp.task('sorting', function () {
         .pipe(gulp.dest('source/blocks'));
 });
 
+// Запуск очистки папки сборки
+gulp.task('clean', function () {
+    console.log('---------- очистка папки сборки');
+    return del('build');
+});
+
+// Запуск копирования шрифтов и svg-спрайта в папку сборки
+gulp.task('copy', function () {
+    console.log('---------- копирование шрифтов и svg-спрайта в папку сборки');
+    return gulp.src([
+        'source/fonts/**/*.{woff,woff2}',
+        'source/img/sprite/*.svg'
+    ], {base: 'source'})
+        .pipe(gulp.dest('build'));
+});
+
+// Запуск копирования (jpg, png, gif) в папку сборки и их оптимизация
+gulp.task('img', function () {
+    console.log('---------- копирование (jpg, png, gif) в папку сборки');
+    const imagemin = require('gulp-imagemin');
+    return gulp.src([
+        'source/img/*.{jpg, png, gif}',
+        'source/img/sprite/*.png'
+    ], {base: 'source'})
+        .pipe(imagemin([
+            imagemin.optipng({optimizationLevel: 3}),
+            imagemin.jpegtran({progressive: true})
+        ]))
+        .pipe(gulp.dest('build'));
+});
+
+// Запуск копирования svg в папку сборки и их оптимизация
+gulp.task('svg', function () {
+    console.log('---------- копирование svg в папку сборки');
+    return gulp.src('source/img/*.svg')
+        .pipe(svgmin({
+            plugins: [
+                {removeAttrs: {attrs: ['id', 'data-name']}},
+                {removeTitle: true}
+                ]}))
+        .pipe(gulp.dest('build/img'));
+});
+
+// Запуск копирования файлов скриптов в папку сборки и их оптимизация
+gulp.task('js', function () {
+    console.log('---------- копирование скриптов в папку сборки');
+    const uglify = require('gulp-uglify');
+    return gulp.src('source/js/**/*.js',
+        {base: 'source'})
+        .pipe(plumber({errorHandler: notify.onError()}))
+        .pipe(gulp.dest('build/js'))
+        .pipe(uglify())
+        .pipe(rename({suffix: '.min'}))
+        .pipe(gulp.dest('build/js'));
+});
+
 // Запуск сборки разметки страниц
 gulp.task('html', function () {
     console.log('---------- сборка HTML');
@@ -271,35 +321,6 @@ gulp.task('html', function () {
             basepath: '@file'
         }))
         .pipe(gulp.dest('build'));
-});
-
-// Запуск очистки папки сборки
-gulp.task('clean', function () {
-    console.log('---------- очистка папки сборки');
-    return del('build');
-});
-
-// Запуск копирования файлов в папку сборки
-gulp.task('copy', function () {
-    console.log('---------- копирование файлов в папку сборки');
-    return gulp.src([
-        'source/fonts/**/*.{woff,woff2}',
-        'source/img/**'
-    ], {
-        base: 'source'
-    })
-        .pipe(gulp.dest('build'));
-});
-
-// Запуск копирования файлов скриптов в папку сборки при их изменении
-gulp.task('js', function () {
-    const uglify = require('gulp-uglify');
-    return gulp.src('source/js/**/*.js')
-        .pipe(plumber({errorHandler: notify.onError()}))
-        .pipe(gulp.dest('build/js'))
-        .pipe(uglify())
-        .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest('build/js'));
 });
 
 // Запуск сборки стилевого файла
@@ -321,11 +342,8 @@ gulp.task('style', function () {
                     'last 2 Firefox versions',
                     'last 2 Opera versions',
                     'last 2 Edge versions'
-                ]
-            }),
-            mqpacker({
-                sort: true
-            })
+                ]}),
+            mqpacker({sort: true})
         ]))
         .pipe(gulpIf(isDevelopment, sourcemaps.write()))
         .pipe(gulp.dest('build/css'))
@@ -334,25 +352,15 @@ gulp.task('style', function () {
         .pipe(gulp.dest('build/css'));
 });
 
-// Запуск оптимизации изображений
-gulp.task('images', function () {
-    console.log('---------- оптимизация изображений');
-    const imagemin = require('gulp-imagemin');
-    return gulp.src('build/img/**/*.{png,img,gif}')
-        .pipe(imagemin([
-            imagemin.optipng({optimizationLevel: 3}),
-            imagemin.jpegtran({progressive: true})
-        ]))
-        .pipe(gulp.dest('build/img'));
-});
-
 // Запуск слежения за файлами
 gulp.task('watch', function () {
     console.log('---------- запуск слежения за изменениями');
-    gulp.watch('source/scss/*.scss', gulp.series('style'));
     gulp.watch('source/blocks/**/*.scss', gulp.series('style'));
-    gulp.watch('source/pages/*.html', gulp.series('html'));
     gulp.watch('source/blocks/**/*.html', gulp.series('html'));
+    gulp.watch('source/scss/*.scss', gulp.series('style'));
+    gulp.watch('source/pages/*.html', gulp.series('html'));
+    gulp.watch('source/img/**/*.{png,img,gif}', gulp.series('img'));
+    gulp.watch('source/img/**/*.svg', gulp.series('svg', 'copy'));
     gulp.watch('source/js/**', gulp.series('js'));
 });
 
@@ -366,6 +374,7 @@ gulp.task('serve', function () {
     });
     server.watch('build/css/*.css').on('change', server.reload);
     server.watch('build/*.html').on('change', server.reload);
+    server.watch('build/img/**/*.*').on('change', server.reload);
     server.watch('build/js/**/*.js').on('change', server.reload);
 });
 
@@ -373,7 +382,7 @@ gulp.task('serve', function () {
 gulp.task('default',
     gulp.series('clean',
         gulp.parallel('copy', 'sorting'),
-        gulp.parallel('html', 'style', 'images', 'js'),
+        gulp.parallel('html', 'style', 'img', 'js', 'svg'),
         gulp.parallel('watch', 'serve')));
 
 // Отправка в GH pages (ветку gh-pages репозитория)
@@ -405,3 +414,31 @@ gulp.task('woff2', function () {
 
 // Конвертация файлов шрифтов в woff2
 gulp.task('fonts', gulp.parallel('woff', 'woff2'));
+
+
+// создание спрайта svg
+gulp.task('symbols', function () {
+    console.log('---------- создание спрайта svg');
+    const svgSprite = require('gulp-svg-sprite');
+    return gulp.src('source/img/icon/*.svg')
+        .pipe(svgmin({
+            plugins: [
+                {removeAttrs: {attrs: ['id', 'fill', 'stroke', 'data-name', 'class']}},
+                {removeTitle: true},
+                {removeStyleElement: true},
+                {collapseGroups: true}
+            ]
+        }))
+        .pipe(svgSprite({
+            mode: {
+                symbol: {
+                    sprite: "../sprite.svg",
+                    render: {
+                        scss: {
+                            dest: '../../../scss/_sprite.scss',
+                            template: "source/scss/templates/_sprite_template.scss"
+                        }}}}}))
+        .pipe(gulp.dest('source/img/sprite'))
+        .pipe(gulp.dest('build/img/sprite'))
+
+});
